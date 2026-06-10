@@ -1,0 +1,30 @@
+{
+  "name": "theme",
+  "version": "1.0.0",
+  "description": "Circadian color theme engine",
+  "type": "module",
+  "scripts": {
+    "test": "tsx test/solar.test.ts && tsx test/seeds.test.ts && tsx test/tokens.test.ts && tsx test/css.test.ts && tsx test/hue.test.ts",
+    "test:solar": "tsx test/solar.test.ts",
+    "test:seeds": "tsx test/seeds.test.ts",
+    "test:tokens": "tsx test/tokens.test.ts",
+    "test:css": "tsx test/css.test.ts",
+    "test:hue": "tsx test/hue.test.ts",
+    "validate": "tsx test/validate.test.ts",
+    "demo:build": "node demo/build.mjs",
+    "demo:build:prod": "node demo/build.mjs --prod",
+    "demo:watch": "node demo/build.mjs --watch",
+    "demo:serve": "node demo/serve.mjs"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "culori": "^4.0.2",
+    "suncalc": "^1.9.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.2",
+    "@types/suncalc": "^1.9.2",
+    "tsx": "^4.22.4",
+    "typescript": "^6.0.3"
+  }
+}

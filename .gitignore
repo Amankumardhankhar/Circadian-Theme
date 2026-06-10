@@ -1,0 +1,7 @@
+node_modules/
+out/
+dist/
+demo/demo.js
+demo/demo.js.map
+.vercel
+.DS_Store

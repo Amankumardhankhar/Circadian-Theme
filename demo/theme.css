@@ -1,0 +1,65 @@
+/* theme.css — application-layer registration of the engine's token vars.
+ *
+ * @property registers every token as <color> (and crossover-proximity as
+ * <number>) so CSS `transition` can animate them. Plain custom properties
+ * are unanimatable. :root then sets a 2s linear transition on every NON-TEXT
+ * token. The text vars are intentionally NOT transitioned: the polarity
+ * crossing is an irreducible black ↔ white snap (~0.94 ΔE) — fading through
+ * invisible mid-grey at the moment legibility matters most is the failure
+ * mode.
+ *
+ * [data-immediate] (set by ThemeEngine.setImmediate(true)) kills all
+ * transitions for active scrubbing (dial drag, slider drag) so updates feel
+ * instant rather than chasing a 2s tween.
+ */
+
+@property --bg                { syntax: '<color>';  inherits: true; initial-value: oklch(0.5 0 0); }
+@property --surface           { syntax: '<color>';  inherits: true; initial-value: oklch(0.5 0 0); }
+@property --surface-elevated  { syntax: '<color>';  inherits: true; initial-value: oklch(0.5 0 0); }
+@property --border            { syntax: '<color>';  inherits: true; initial-value: oklch(0.5 0 0); }
+@property --bg-gradient-stop  { syntax: '<color>';  inherits: true; initial-value: oklch(0.5 0 0); }
+
+@property --text-primary      { syntax: '<color>';  inherits: true; initial-value: oklch(0.05 0 0); }
+@property --text-secondary    { syntax: '<color>';  inherits: true; initial-value: oklch(0.2 0 0); }
+@property --text-muted        { syntax: '<color>';  inherits: true; initial-value: oklch(0.35 0 0); }
+
+@property --accent            { syntax: '<color>';  inherits: true; initial-value: oklch(0.6 0.15 200); }
+@property --accent-hover      { syntax: '<color>';  inherits: true; initial-value: oklch(0.66 0.17 200); }
+@property --accent-secondary  { syntax: '<color>';  inherits: true; initial-value: oklch(0.6 0.15 240); }
+
+@property --shadow            { syntax: '<color>';  inherits: true; initial-value: oklch(0.05 0 0 / 0.35); }
+@property --glow              { syntax: '<color>';  inherits: true; initial-value: oklch(0.85 0.12 200 / 0.2); }
+@property --ambient-tint      { syntax: '<color>';  inherits: true; initial-value: oklch(0.5 0 0); }
+
+@property --success           { syntax: '<color>';  inherits: true; initial-value: oklch(0.6 0.13 145); }
+@property --warning           { syntax: '<color>';  inherits: true; initial-value: oklch(0.6 0.13 75);  }
+@property --error             { syntax: '<color>';  inherits: true; initial-value: oklch(0.6 0.13 25);  }
+@property --info              { syntax: '<color>';  inherits: true; initial-value: oklch(0.6 0.13 240); }
+
+@property --crossover-proximity { syntax: '<number>'; inherits: true; initial-value: 0; }
+
+:root {
+  /* Explicit list: every non-text token + crossover-proximity. Text vars are
+   * deliberately omitted so the irreducible polarity flip snaps. */
+  transition:
+    --bg                2s linear,
+    --surface           2s linear,
+    --surface-elevated  2s linear,
+    --border            2s linear,
+    --bg-gradient-stop  2s linear,
+    --accent            2s linear,
+    --accent-hover      2s linear,
+    --accent-secondary  2s linear,
+    --shadow            2s linear,
+    --glow              2s linear,
+    --ambient-tint      2s linear,
+    --success           2s linear,
+    --warning           2s linear,
+    --error             2s linear,
+    --info              2s linear,
+    --crossover-proximity 2s linear;
+}
+
+:root[data-immediate] {
+  transition: none;
+}
